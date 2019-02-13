@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdzBooksService } from '../../services/adzbooks.service';
+import { AdzBookDialogComponent } from '../../components/adz-book-dialog/adz-book-dialog.component';
+import { MatDialog, MatDialogConfig } from "@angular/material";
 
 @Component({
   selector: 'adz-list-books',
@@ -9,7 +11,7 @@ import { AdzBooksService } from '../../services/adzbooks.service';
 export class AdzListBooksComponent implements OnInit {
   private books : any
 
-  constructor( public booksService: AdzBooksService ) { }
+  constructor( public booksService: AdzBooksService, private dialog: MatDialog ) { }
 
   // Récupère tous les livres
   ngOnInit() {    
@@ -18,8 +20,28 @@ export class AdzListBooksComponent implements OnInit {
   }
 
   // affiche les details du livre cliqué
-  showDetails(detailBook : any){
-    console.log(detailBook.title);
-  }
+  openDialog(detailBook : any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      title: detailBook.title,
+      authors: detailBook.authors,
+      publishedDate: detailBook.publishedDate,
+      categories: detailBook.categories,
+      imageLinks: detailBook.imageLinks.thumbnail,
+      language: detailBook.language,
+      infoLink: detailBook.infoLink,
+      description: detailBook.description,
+
+      //debug
+      o: detailBook
+    };
+
+    this.dialog.open(AdzBookDialogComponent, dialogConfig);
+}
 
 }

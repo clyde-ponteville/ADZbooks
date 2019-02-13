@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content>
+  <div class="dialog">
+    <img [src]="imageLinks" [alt]="title"/>
+    <div>
+      <p>Publié le: {{ publishedDate == undefined ? 'Non communiqué' :  publishedDate  | date:'dd/MM/yyyy' }}</p>
+      <p>Auteur: {{ authors == undefined ? 'Non communiqué' : authors}}</p>
+      <p>Résumer: {{ description == undefined ? 'Non communiqué' : description }}</p>      
+    </div>
+  </div>
+    
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="footerDialog">
+    <a [href]="infoLink" target="_blank">En savoir plus ?</a>
+    <button class="mat-raised-button" mat-button [mat-dialog-close]="true">Fermer</button>
+  </div>
+</mat-dialog-actions>

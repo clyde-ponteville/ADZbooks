@@ -1,7 +1,7 @@
 
-<div *ngFor="let book of books | keyvalue">
-  <div *ngFor="let book of book.value | keyvalue">    
-    <img (click)='showDetails(book.value.volumeInfo)' [src]="book.value.volumeInfo.imageLinks.thumbnail" [alt]="book.value.volumeInfo.title"/>
+<div *ngFor="let book of books | keyvalue" class="listBooks">
+  <div *ngFor="let book of book.value | keyvalue" class="book">    
     <h2>{{ book.value.volumeInfo.title }}</h2>
+    <img (click)='openDialog(book.value.volumeInfo)' [src]="book.value.volumeInfo.imageLinks.thumbnail" [alt]="book.value.volumeInfo.title"/>
   </div>
 </div>
