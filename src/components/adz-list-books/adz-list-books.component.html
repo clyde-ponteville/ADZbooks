@@ -1,0 +1,7 @@
+
+<div *ngFor="let book of books | keyvalue">
+  <div *ngFor="let book of book.value | keyvalue">    
+    <img (click)='showDetails(book.value.volumeInfo)' [src]="book.value.volumeInfo.imageLinks.thumbnail" [alt]="book.value.volumeInfo.title"/>
+    <h2>{{ book.value.volumeInfo.title }}</h2>
+  </div>
+</div>
