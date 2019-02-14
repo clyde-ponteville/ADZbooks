@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AdzBooksService {
 
-  private search : string; 
+  private search : string;  
+
   constructor( public http: HttpClient, private router : Router) { 
 
   }

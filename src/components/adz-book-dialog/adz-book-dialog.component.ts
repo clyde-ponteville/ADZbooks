@@ -9,16 +9,13 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 export class AdzBookDialogComponent implements OnInit {
 
   private title : string;  
-  private authors : string
-  private publishedDate : string
-  private categories : string
-  private imageLinks : string
-  private language : string
-  private infoLink : string
+  private authors : string;
+  private publishedDate : string;
+  private categories : string;
+  private imageLinks : string;
+  private language : string;
+  private infoLink : string;
   private description : string;
-
-  //debug
-  private o : any;
 
   constructor(private dialogRef: MatDialogRef<AdzBookDialogComponent>, @Inject(MAT_DIALOG_DATA) data) { 
 
@@ -30,13 +27,10 @@ export class AdzBookDialogComponent implements OnInit {
     this.language = data.language;
     this.infoLink = data.infoLink;
     this.description = data.description;
-
-    //debug
-    this.o = data;
   }
 
   ngOnInit() {
-    console.log(this.o);
+    
   }
 
 }

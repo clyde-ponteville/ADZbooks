@@ -1,7 +1,17 @@
+<ul>
+  <li routerLink="/">Retour</li>
+</ul>
+
+<input type="text">
+
+<select name="authors" id="authors" (change)='getByAuthor($event.target.value)'>
+  <option selected value="">Choisir son auteur</option>
+  <option *ngFor="let author of authors" value="{{ author }}" >{{ author }}</option>
+</select>
 
 <div *ngFor="let book of books | keyvalue" class="listBooks">
-  <div *ngFor="let book of book.value | keyvalue" class="book">    
+  <div *ngFor="let book of book.value | keyvalue" class="book" AdzBlurBackground>    
     <h2>{{ book.value.volumeInfo.title }}</h2>
-    <img (click)='openDialog(book.value.volumeInfo)' [src]="book.value.volumeInfo.imageLinks.thumbnail" [alt]="book.value.volumeInfo.title"/>
+    <img class="coverBook" (click)='openDialog(book.value.volumeInfo)' [src]="book.value.volumeInfo.imageLinks.thumbnail" [alt]="book.value.volumeInfo.title"/>
   </div>
 </div>

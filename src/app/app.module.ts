@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { AdzHomeBooksComponent } from '../components/adz-home-books/adz-home-books.component';
 import { AdzListBooksComponent } from '../components/adz-list-books/adz-list-books.component';
 import { AdzBookDialogComponent } from '../components/adz-book-dialog/adz-book-dialog.component';
+import { AdzBlurBackgroundDirective } from '../directives/adz-blur-background.directive';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
     AdzHomeBooksComponent,
     AdzListBooksComponent,
     AdzBookDialogComponent,
+    AdzBlurBackgroundDirective,
   ],
   imports: [
     BrowserModule, 
