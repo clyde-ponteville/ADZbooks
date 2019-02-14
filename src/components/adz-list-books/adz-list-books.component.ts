@@ -23,12 +23,13 @@ export class AdzListBooksComponent implements OnInit {
       .then( books  => { 
         this.books = books;       
         
+        let letBooks = this.books;
         //Tableau qui contiendra tous les auteurs
         var arrayAuthor = [];        
         //Recherche des auteurs
-        for (const key in books.items) {
-          if (books.items.hasOwnProperty(key)) {
-            const element = books.items[key];            
+        for (const key in letBooks.items) {
+          if (letBooks.items.hasOwnProperty(key)) {
+            const element = letBooks.items[key];            
             let author = element.volumeInfo.authors;
             //Ajoute tous les auteurs dans un tableau
             if (author != undefined ) {              
@@ -73,14 +74,15 @@ getByAuthor(authorSelected : string){
       .then( books  => { 
         this.books = books;     
         
+        let letBooks = this.books;
         // Création d'un objet construit de la même façon de l'objet reçu par l'api
         // On lui ajoutera tous les objets lié à l'auteur choisi puis on mettra à jour 
         // l'attribut books
         let objBook = {items: [] }
       
-        for (const key in books.items) {
-          if (books.items.hasOwnProperty(key)) {
-            const element = books.items[key];
+        for (const key in letBooks.items) {
+          if (letBooks.items.hasOwnProperty(key)) {
+            const element = letBooks.items[key];
         
             if (element.volumeInfo.authors == authorSelected) { 
               objBook.items.push(element);
