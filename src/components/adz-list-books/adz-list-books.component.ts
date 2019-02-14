@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AdzBooksService } from '../../services/adzbooks.service';
 import { AdzBookDialogComponent } from '../../components/adz-book-dialog/adz-book-dialog.component';
 import { MatDialog, MatDialogConfig } from "@angular/material";
-import { exists } from 'fs';
 
 @Component({
   selector: 'adz-list-books',
