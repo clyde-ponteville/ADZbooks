@@ -1,6 +1,29 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+*{
+    box-sizing: border-box;
+}
 body{
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+
+    background-color: #3DA2CC;
+    background-image: url('assets/dotted.png');
+    background-size: 2px;
+    
 }
 
+.mat-dialog-container{
+    max-width: 50rem;
+    min-width: 50rem;
+    padding: 0 !important;
+
+}
+.mat-dialog-content{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.mat-dialog-actions{
+    margin-bottom: 0 !important;
+}

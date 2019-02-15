@@ -1,0 +1,36 @@
+.container{
+    height: 100vh;
+    max-width: 1270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    flex-direction: column;
+}
+
+.container img{
+    margin-top: -10rem;
+}
+.searchForm{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.searchBar{
+    padding: 1rem;
+    border-radius: 2rem 0 0 2rem;
+    border: none;
+    width: 100%;
+}
+
+.exploreBtn{
+    padding: 1rem;
+    border-radius: 0 2rem 2rem 0;
+    border: none;
+    cursor: pointer;
+    background-color: #008cc8;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+}

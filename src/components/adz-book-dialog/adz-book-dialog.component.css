@@ -1,3 +1,64 @@
 button{
     cursor: pointer;
+    padding: 1rem;
+    border-radius: 0 2rem;
+    border: none;
+    cursor: pointer;
+    background-color: #008cc8;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.dialog{
+    display: flex;
+    justify-content: space-between;
+}
+.dialog img{
+    width: 30%;
+}
+
+.infosDial{
+    width: 70%;
+    height: 25rem;
+    position: relative;
+}
+
+.infosDial h2{
+    margin: 0;
+    text-align: center;
+    background-color: #26657F;
+    color: #fff;
+    padding: .7rem;
+    font-weight: 700;
+}
+
+.infosBook{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #4C717F;
+    padding: 0 1rem;
+    
+}
+
+.desc{
+    height: 38%;
+    overflow: auto;
+    padding: 0 1rem;
+
+}
+
+.desc span{
+    color: #4C717F;
+}
+
+.footerDialog{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 0 1rem;
+    position: absolute;
+    bottom: 1rem;
 }

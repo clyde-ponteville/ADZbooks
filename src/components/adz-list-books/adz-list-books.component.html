@@ -1,17 +1,42 @@
-<ul>
-  <li routerLink="/">Retour</li>
-</ul>
+<header class="header">
+  <a routerLink="/" class="headerLogo">
+    <img src="../../assets/logo/adzbooks_logo.png" alt="ADZbooks logo">
+  </a>
+</header>
 
-<input type="text" placeholder="Auteur, catégorie, ...">
+<div class="container">
+  <div class="filter">
+    <input class="searchBar" type="text" placeholder="Auteur, catégorie, ...">
+  
+    <div class="selectFilter">
+      <!-- <select class="select" name="authors" id="authors" (change)='getByAuthor($event.target.value)'>
+        <option selected value="">Choisir son auteur</option>
+        <option *ngFor="let author of authors" value="{{ author }}" >{{ author }}</option>
+      </select>
+  
+      <select class="select" name="authors" id="authors" (change)='getByAuthor($event.target.value)'>
+        <option selected value="">Choisir son auteur</option>
+        <option *ngFor="let author of authors" value="{{ author }}" >{{ author }}</option>
+      </select> -->
 
-<select name="authors" id="authors" (change)='getByAuthor($event.target.value)'>
-  <option selected value="">Choisir son auteur</option>
-  <option *ngFor="let author of authors" value="{{ author }}" >{{ author }}</option>
-</select>
+      <mat-select class="select" name="authors" id="authors"  placeholder="Choisir son auteur"> 
+          <mat-option value="">Choisir son auteur</mat-option>
+          <mat-option (onSelectionChange)='getByAuthor($event)' *ngFor="let author of authors" value="{{ author }}" >{{ author }}</mat-option>
+      </mat-select>
+  
+      <mat-select class="select" name="authors" id="authors"  placeholder="Choisir son auteur"> 
+          <mat-option value="">Choisir son auteur</mat-option>
+          <mat-option (onSelectionChange)='getByAuthor($event)' *ngFor="let author of authors" value="{{ author }}" >{{ author }}</mat-option>
+      </mat-select> 
 
-<div *ngFor="let book of books | keyvalue" class="listBooks">
-  <div *ngFor="let book of book.value | keyvalue" class="book" AdzBlurBackground>    
-    <h2>{{ book.value.volumeInfo.title }}</h2>
-    <img class="coverBook" (click)='openDialog(book.value.volumeInfo)' [src]="book.value.volumeInfo.imageLinks.thumbnail" [alt]="book.value.volumeInfo.title"/>
+    </div>
+  </div>
+  
+  
+  <div *ngFor="let book of books | keyvalue | slice:0:1;" class="listBooks">
+    <div *ngFor="let book of book.value | keyvalue" class="book" (click)='openDialog(book.value.volumeInfo)'>    
+      <h2>{{ book.value.volumeInfo.title }}</h2>
+      <img class="coverBook"  [src]="book.value.volumeInfo.imageLinks.thumbnail" [alt]="book.value.volumeInfo.title"/>
+    </div>
   </div>
 </div>

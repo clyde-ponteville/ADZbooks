@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from "@angular/material";
+import { MatDialogModule, MatSelectModule } from "@angular/material";
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { AdzHomeBooksComponent } from '../components/adz-home-books/adz-home-books.component';
 import { AdzListBooksComponent } from '../components/adz-list-books/adz-list-books.component';
 import { AdzBookDialogComponent } from '../components/adz-book-dialog/adz-book-dialog.component';
-import { AdzBlurBackgroundDirective } from '../directives/adz-blur-background.directive';
+import { AdzHoverDirective } from '../directives/adz-hover.directive';
 
 
 const routes: Routes = [
@@ -26,8 +26,8 @@ const routes: Routes = [
     AppComponent,
     AdzHomeBooksComponent,
     AdzListBooksComponent,
-    AdzBookDialogComponent,
-    AdzBlurBackgroundDirective,
+    AdzBookDialogComponent,    
+    AdzHoverDirective,
   ],
   imports: [
     BrowserModule, 
@@ -35,7 +35,8 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule, 
     BrowserAnimationsModule, 
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [AdzBooksService],
   bootstrap: [AppComponent],

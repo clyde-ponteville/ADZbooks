@@ -65,34 +65,36 @@ export class AdzListBooksComponent implements OnInit {
     };
 
     this.dialog.open(AdzBookDialogComponent, dialogConfig);
-}
+  }  
 
-//Récupère les livres de l'auteur choisi
-getByAuthor(authorSelected : string){
-  this.booksService.getAll()
-      .then( books  => { 
-        this.books = books;     
-        
-        let letBooks = this.books;
-        // Création d'un objet construit de la même façon de l'objet reçu par l'api
-        // On lui ajoutera tous les objets lié à l'auteur choisi puis on mettra à jour 
-        // l'attribut books
-        let objBook = {items: [] }
+  //Récupère les livres de l'auteur choisi
+  getByAuthor(authorSelected){
+
+    if(authorSelected.isUserInput) {
+      //Récupère l'auteur choisi
+      authorSelected = authorSelected.source.value;
       
-        for (const key in letBooks.items) {
-          if (letBooks.items.hasOwnProperty(key)) {
-            const element = letBooks.items[key];
+      this.booksService.getAll()
+        .then( books  => { 
+          this.books = books;     
+          
+          let letBooks = this.books;
+          // Création d'un objet construit de la même façon de l'objet reçu par l'api
+          // On lui ajoutera tous les objets lié à l'auteur choisi puis on mettra à jour 
+          // l'attribut books
+          let objBook = {items: [] }
         
-            if (element.volumeInfo.authors == authorSelected) { 
-              objBook.items.push(element);
-              this.books = objBook;
+          for (const key in letBooks.items) {
+            if (letBooks.items.hasOwnProperty(key)) {
+              const element = letBooks.items[key];
+          
+              if (element.volumeInfo.authors == authorSelected) { 
+                objBook.items.push(element);
+                this.books = objBook;
+              }          
             }          
-          }          
-        }
-
-      });
-        
-}
-
-
+          }  
+        });
+    }       
+  }
 }
