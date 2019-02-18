@@ -155,7 +155,6 @@ export class AdzListBooksComponent implements OnInit {
   //Recherche de livre correspondant à la valeur entrées
   submit(value : string){
     
-    let letBooks = this.books;
     //Tableau qui contiendra des mots clés comme le nom de l'auteur, categorie, titre
     let keyWords = [];
     //Tableau qui contiendra tous les objets book de la recherche
@@ -165,14 +164,19 @@ export class AdzListBooksComponent implements OnInit {
     let objBookVolume = {items: [] };
 
     let regex = new RegExp("\\b\\w*"+value+"\\w*\\b", 'gi'); 
-      
+
+    this.booksService.getAll()
+      .then( books  => { 
+        this.books = books;    
+        let letBooks = this.books;
+
         for (const key in letBooks.items) {
           if (letBooks.items.hasOwnProperty(key)) {
             const element = letBooks.items[key];
           
             //Ajout des titres dans le tableaux de mot clés
             keyWords.push(element.volumeInfo.title);
-
+      
             //Ajout des auteurs dans le tableaux de mot clés
             if (typeof element.volumeInfo.authors === "object") {
               element.volumeInfo.authors.forEach(e => {
@@ -195,16 +199,18 @@ export class AdzListBooksComponent implements OnInit {
               }
             }
           }
-        } 
-        
+        }
+
         //Supprime les doublons
-        objBook.items = Array.from( new Set(objBook.items) );
-        
+        objBook.items = Array.from( new Set(objBook.items) );        
         //Création du tableau avec la key volumeInfo pour pouvoir l'utiliser sans changé le template
         objBook.items.forEach(element => {          
           objBookVolume.items.push({ volumeInfo : element});
         });
         this.books = objBookVolume;
+      });
+      
+        
 
   }
   
