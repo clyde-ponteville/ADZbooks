@@ -17,7 +17,6 @@ export class AdzHomeBooksComponent implements OnInit {
   
   submit(){   
     this.booksService.getSearch(this.search);
-    
   }
 
 }

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AdzBooksService } from '../../services/adzbooks.service';
 import { AdzBookDialogComponent } from '../../components/adz-book-dialog/adz-book-dialog.component';
 import { MatDialog, MatDialogConfig } from "@angular/material";
-import { isBoolean } from 'util';
-import { element } from 'protractor';
 
 @Component({
   selector: 'adz-list-books',
@@ -15,16 +13,26 @@ export class AdzListBooksComponent implements OnInit {
   private authors : any;
   private categories : any;
 
+  private page : number = 0;
+  private totalItems  : number;
+  // private pagePrec : number;
+  // private pageSuiv : number;
+
+
   constructor( public booksService: AdzBooksService, private dialog: MatDialog ) { 
 
   }
 
   // Récupère tous les livres
   ngOnInit() {    
-    this.booksService.getAll()
+    this.booksService.getAll(this.page)
       .then( books  => { 
-        this.books = books;       
+        this.books = books; 
         
+        this.totalItems = Math.ceil(this.books.totalItems / 15);
+        // this.pagePrec = this.page - 1;
+        // this.pageSuiv = this.page + 1;
+
         let letBooks = this.books;
         //Tableau qui contiendra tous les auteurs
         var arrayAuthors = [];  
@@ -64,6 +72,16 @@ export class AdzListBooksComponent implements OnInit {
       
   }
 
+  //pagination
+  arrayOne(n: number): any[] {
+    return Array(n);
+  }
+  changePage(i : number){
+    this.page = i;
+    this.ngOnInit();
+  }
+
+
   // affiche les details du livre cliqué
   openDialog(detailBook : any) {
 
@@ -93,7 +111,7 @@ export class AdzListBooksComponent implements OnInit {
       //Récupère l'auteur choisi
       authorSelected = authorSelected.source.value;
 
-      this.booksService.getAll()
+      this.booksService.getAll(this.page)
       .then( books  => { 
         this.books = books;  
       
@@ -107,6 +125,10 @@ export class AdzListBooksComponent implements OnInit {
           if (letBooks.items.hasOwnProperty(key)) {
             const element = letBooks.items[key];
         
+            //Ajoute des couverture aux livres sans
+            if (element.volumeInfo.imageLinks == undefined) {
+              element.volumeInfo.imageLinks = {thumbnail: 'https://dummyimage.com/254x320/000/fff.jpg&text=No+data'};
+            }
             if (element.volumeInfo.authors == authorSelected) { 
               objBook.items.push(element);
               this.books = objBook;
@@ -125,7 +147,7 @@ export class AdzListBooksComponent implements OnInit {
       //Récupère la catégorie choisi
       categorySelected = categorySelected.source.value;
 
-      this.booksService.getAll()
+      this.booksService.getAll(this.page)
       .then( books  => { 
         this.books = books; 
       
@@ -138,7 +160,10 @@ export class AdzListBooksComponent implements OnInit {
         for (const key in letBooks.items) {
           if (letBooks.items.hasOwnProperty(key)) {
             const element = letBooks.items[key];
-        
+            //Ajoute des couverture aux livres sans
+            if (element.volumeInfo.imageLinks == undefined) {
+              element.volumeInfo.imageLinks = {thumbnail: 'https://dummyimage.com/254x320/000/fff.jpg&text=No+data'};
+            }
             if (element.volumeInfo.categories == categorySelected) { 
               objBook.items.push(element);
               this.books = objBook;
@@ -165,7 +190,7 @@ export class AdzListBooksComponent implements OnInit {
 
     let regex = new RegExp("\\b\\w*"+value+"\\w*\\b", 'gi'); 
 
-    this.booksService.getAll()
+    this.booksService.getAll(this.page)
       .then( books  => { 
         this.books = books;    
         let letBooks = this.books;
@@ -173,6 +198,11 @@ export class AdzListBooksComponent implements OnInit {
         for (const key in letBooks.items) {
           if (letBooks.items.hasOwnProperty(key)) {
             const element = letBooks.items[key];
+
+            //Ajoute des couverture aux livres sans
+            if (element.volumeInfo.imageLinks == undefined) {
+              element.volumeInfo.imageLinks = {thumbnail: 'https://dummyimage.com/254x320/000/fff.jpg&text=No+data'};
+            }
           
             //Ajout des titres dans le tableaux de mot clés
             keyWords.push(element.volumeInfo.title);

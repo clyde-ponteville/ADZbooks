@@ -22,9 +22,10 @@ export class AdzBooksService {
   }
 
   //Récupère tous les livres de la recherche
-  getAll(){
+  getAll(index : number){
+    index = index*15;
     let search = this.router.url.substr(7);
-    return this.http.get('https://www.googleapis.com/books/v1/volumes?q='+search)
+    return this.http.get('https://www.googleapis.com/books/v1/volumes?q='+search+'&startIndex='+index+'&maxResults=15')
     .toPromise();
   }
 }

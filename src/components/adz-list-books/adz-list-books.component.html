@@ -34,4 +34,9 @@
       <img class="coverBook"  [src]="book.value.volumeInfo.imageLinks.thumbnail" [alt]="book.value.volumeInfo.title"/>
     </div>
   </div>
+  <nav>
+    <ul class="pagination">      
+        <li *ngFor="let item of arrayOne(totalItems); let i = index;"><span (click)="changePage(i)" class="page-link" >{{i+1}}</span></li>
+    </ul>
+  </nav>
 </div>
