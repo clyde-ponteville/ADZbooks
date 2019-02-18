@@ -1,34 +1,29 @@
-<header class="header">
-  <a routerLink="/" class="headerLogo">
+<header routerLink="/" class="header">
+  <a class="headerLogo">
     <img src="../../assets/logo/adzbooks_logo.png" alt="ADZbooks logo">
   </a>
 </header>
 
 <div class="container">
   <div class="filter">
-    <input class="searchBar" type="text" placeholder="Auteur, catégorie, ...">
+
+    <form class="searchForm" (ngSubmit)="submit(field.value)" >
+      <input class="searchBar" #field type="text" placeholder="Auteur, catégorie, titre">
+      <!-- <button class="exploreBtn" type="submit" [disabled]="!searchForm.form.valid">Explore</button>-->
+    </form>
   
     <div class="selectFilter">
-      <!-- <select class="select" name="authors" id="authors" (change)='getByAuthor($event.target.value)'>
-        <option selected value="">Choisir son auteur</option>
-        <option *ngFor="let author of authors" value="{{ author }}" >{{ author }}</option>
-      </select>
-  
-      <select class="select" name="authors" id="authors" (change)='getByAuthor($event.target.value)'>
-        <option selected value="">Choisir son auteur</option>
-        <option *ngFor="let author of authors" value="{{ author }}" >{{ author }}</option>
-      </select> -->
-
-      <mat-select class="select" name="authors" id="authors"  placeholder="Choisir son auteur"> 
-          <mat-option value="">Choisir son auteur</mat-option>
+      <mat-select class="select" name="authors" id="authors"  placeholder="Choisir l'auteur"> 
+          <mat-option (click)='ngOnInit()' value="reset">Aucun</mat-option>
           <mat-option (onSelectionChange)='getByAuthor($event)' *ngFor="let author of authors" value="{{ author }}" >{{ author }}</mat-option>
       </mat-select>
   
-      <mat-select class="select" name="authors" id="authors"  placeholder="Choisir son auteur"> 
-          <mat-option value="">Choisir son auteur</mat-option>
-          <mat-option (onSelectionChange)='getByAuthor($event)' *ngFor="let author of authors" value="{{ author }}" >{{ author }}</mat-option>
+      <mat-select class="select" name="category" id="category"  placeholder="Choisir la catégorie"> 
+          <mat-option (click)='ngOnInit()' value="reset">Aucun</mat-option>
+          <mat-option (onSelectionChange)='getByCategory($event)' *ngFor="let category of categories" value="{{ category }}" >{{ category }}</mat-option>
       </mat-select> 
-
+      
+      <button routerLink="/">Retour</button>
     </div>
   </div>
   

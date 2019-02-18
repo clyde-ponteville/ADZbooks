@@ -1,13 +1,15 @@
-button{
-    cursor: pointer;
+button{    
     padding: 1rem;
     border-radius: 0 2rem;
     border: none;
     cursor: pointer;
-    background-color: #008cc8;
+    background-color: #26657F;
     color: #fff;
     font-weight: 700;
     text-transform: uppercase;
+}
+button:hover{
+    background-color: #008cc8;
 }
 
 .dialog{
@@ -38,12 +40,19 @@ button{
     justify-content: space-between;
     align-items: center;
     color: #4C717F;
-    padding: 0 1rem;
-    
+    padding: 1rem 1rem 0;
+    flex-wrap: wrap;    
+}
+.infosBook p {
+    width: 50%;
+    margin: .3rem 0;
+}
+.infosBook p:nth-child(even) {
+    text-align: right;
 }
 
 .desc{
-    height: 38%;
+    height: 37%;
     overflow: auto;
     padding: 0 1rem;
 

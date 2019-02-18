@@ -5,6 +5,8 @@
       <div class="infosBook">
         <p>{{ publishedDate == undefined ? 'Non communiqué' :  publishedDate  | date:'dd/MM/yyyy' }}</p>
         <p>{{ authors == undefined ? 'Non communiqué' : authors}}</p>
+        <p>{{ language == undefined ? 'Non communiqué' :  language | uppercase }}</p>
+        <p>{{ categories == undefined ? 'Non communiqué' : categories}}</p>
       </div>
       <p class="desc">{{ description == undefined ? 'Non communiqué' : description }}</p>    
 
