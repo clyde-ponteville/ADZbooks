@@ -36,7 +36,9 @@
   </div>
   <nav>
     <ul class="pagination">      
-        <li *ngFor="let item of arrayOne(totalItems); let i = index;"><span (click)="changePage(item)">{{item}}</span></li>
+        <li *ngFor="let item of arrayOne(totalItems); let i = index; ">
+          <span active (click)="changePage(item-1)">{{item}}</span>
+        </li>
     </ul>
   </nav>
 </div>

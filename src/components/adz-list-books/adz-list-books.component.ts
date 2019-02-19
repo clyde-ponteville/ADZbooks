@@ -81,15 +81,10 @@ export class AdzListBooksComponent implements OnInit {
     for (let i = 0; i < n; i++) {
       pagination.push(i+1);    
     }
-
-    if (pagination.length > 3) {      
-      
-      pagination = pagination.slice(this.page, this.page + 4);
-      
+    if (pagination.length > 3) {     
+      pagination = pagination.slice(this.page, this.page + 4);      
       pagination[0] = firstPage;
-      pagination.push('...');
       pagination.push(lastPage);
-      
       return pagination;
     }else{
       return pagination;

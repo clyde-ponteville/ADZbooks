@@ -1,22 +1,15 @@
-import { Directive, HostListener, Renderer2  } from '@angular/core';
+import { Directive, HostListener, Renderer2, ElementRef  } from '@angular/core';
 
 @Directive({
-  selector: '[hover]'
+  selector: '[active]'
 })
 export class AdzHoverDirective {
 
-  constructor(  private renderer: Renderer2) { }
+  constructor(private el : ElementRef,  private renderer: Renderer2) { 
 
-  
-  @HostListener('mouseenter') onMouseEnter(){
-    // this.setDisplay( 'block' );
-}
-
-  @HostListener('mouseleave') onMouseLeave(){
-    // this.setDisplay( 'none' );
-  }
-
-  private setDisplay( display: string ){
+    // console.log(this.renderer.addClass(this.el.nativeElement , 'active'));
+    // console.log(this.renderer);
+    // console.log(this.el.nativeElement);
 
   }
 
